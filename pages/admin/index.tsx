@@ -39,7 +39,7 @@ const admin = () => {
                 <label className="font-bold">Password: &nbsp;&nbsp;</label>
                 <input className="border-2 border-red-500 rounded-md" onChange={(e) => setPass(e.target.value)} type="password"/>
                 <br/>
-                <button className="hover:bg-slate-700 px-1 py-[4px] text-white bg-black rounded-lg" type='submit'>Enter</button>
+                <button className="transition-all font-bold px-1 py-[4px] text-black border-2 border-black bg-white rounded-lg" type='submit'>Enter</button>
             </form>
         </div>
     )
@@ -52,7 +52,7 @@ const admin = () => {
                 <label className="font-bold">Password: &nbsp;&nbsp;</label>
                 <input className="border-2 border-black rounded-md" onChange={(e) => setPass(e.target.value)} type="password"/>
                 <br/>
-                <button className="hover:bg-slate-700 px-1 py-[4px] text-white bg-black rounded-lg" type='submit'>Enter</button>
+                <button className="hover:bg-black transition-all hover:text-white font-bold px-1 py-[4px] text-black border-2 border-black bg-transparent rounded-lg" type='submit'>Enter</button>
             </form>
         </div>
     )
@@ -67,6 +67,7 @@ const admin = () => {
                                 <td className="p-4 border border-slate-700">{i.name}</td>
                                 <td className="p-4 border border-slate-700">{i.quantity}</td>
                                 <td className="p-4 border border-slate-700">{i.userId}</td>
+                                <td className="p-4 border border-slate-700">{i.store}</td>
                                 </tr>
                                )
                         })}

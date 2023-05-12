@@ -2,8 +2,8 @@ import { prisma } from "@/prisma/prisma"
 
 const handler = async ( req , res ) => {
     if ( req.method == 'POST' ) {
-        const orders = req.body
-        for ( const order of orders ) {
+        const orderx = req.body
+        for ( const order of orderx ) {
             const value = await prisma.dish.findUnique({
                 where: {
                     name: order.name
@@ -19,12 +19,13 @@ const handler = async ( req , res ) => {
                 }
             })
         }
-        const value = orders.map(order => ({ name: order.name , quantity: order.count }))
+        const value = orderx.map(order => ({ name: order.name , quantity: order.count , store: order.storeId}))
         const newOrder = await prisma.user.create({
             data: {
                 orders: {
                     create: value
-                }
+                },
+                store: orderx[0].storeId
             },
             include: {
                 orders: true

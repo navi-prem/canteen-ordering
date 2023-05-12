@@ -1,7 +1,5 @@
-const main = () => {
-    return (
-        <></>
-   )
+const home = () => {
+    return <>Home</>
 }
 
-export default main
+export default home

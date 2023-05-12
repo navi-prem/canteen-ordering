@@ -1,15 +1,18 @@
 import {useEffect, useState} from "react"
 import axios from "axios"
+import {useRouter} from "next/router"
 
-export default function main(){
-
+const id = () => {
+    const router = useRouter()
     const [ allItems , setAll ] = useState([])
     const [ id , setId ] = useState('')
 
     const handleRazorpay = async (e, amount) => {
 
+        if ( amount == 0 ) return
+
         e.preventDefault()
-        const {data} = await axios.post("./api", {
+        const {data} = await axios.post("/api", {
             amount: amount * 100,
             currency: "INR"
         })
@@ -23,11 +26,8 @@ export default function main(){
             order_id: data.id,
             handler: async function (response) {
                 const result = allItems.filter(item => item.count > 0)
-                const { data } = await axios.post('./api/payment-success', result )
+                const { data } = await axios.post('../api/payment-success', result )
                 setId(data.id)
-                // alert(response.razorpay_payment_id);
-                // alert(response.razorpay_order_id);
-                // alert(response.razorpay_signature)
             },
             theme: {
                 color: '##2563eb',
@@ -38,19 +38,19 @@ export default function main(){
         ins.open()
     }
 
-    const func = async () => {
-        const { data } = await axios.get('./api')
-        const items = data.map(item => 
-           {
-               return {...item, count: 0}
-           }
-        )
-        setAll(items)
-    }
 
     useEffect(()=> {
-        func()
-    },[])
+        const func = async () => {
+            const { data } = await axios.get(`../api/ping/${router.query.storeId}`)
+            const items = data.map(item => 
+                    {
+                    return {...item, count: 0}
+                    }
+                    )
+            setAll(items)
+        }
+        if(router.query.storeId) func()
+    },[router.query.storeId])
 
   return (
   <>
@@ -82,3 +82,5 @@ export default function main(){
   </>
   )
 }
+
+export default id
