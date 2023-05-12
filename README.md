@@ -1,8 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Getting Started
 
-## Getting Started
+Firstly, create the .env file and add the environment variables. The environment variables include,
+* ```DATABASE_URL``` -&nbsp; The URL of the database.
+* ```KEY_ID``` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;The key id provided by the razorpay API.
+* ```KEY_SECRET``` &nbsp;&nbsp;&nbsp;- &nbsp;The secret key provided by the razorpay api.
 
-First, run the development server:
+Then, run ```npx prisma migrate dev --name init``` to migrate the relational database schema to the connected database.
+
+Lastly, run the development server:
 
 ```bash
 npm run dev
@@ -12,27 +17,16 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [this url](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# About the project
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## The Order page:
+![image](https://github.com/navi-prem/canteen-ordering/assets/120002392/d97a134f-403b-48aa-8266-71fd0e9f287a)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The products are fetched from the database and are rendered to the user interface from where the user can interact and place their order.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## The Admin page:<br/>
+![image](https://github.com/navi-prem/canteen-ordering/assets/120002392/80e6688b-cc69-49c4-a99b-5d0c8bc8e568)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The orders by the users are fetched from the database and is then sent to the admin page.
